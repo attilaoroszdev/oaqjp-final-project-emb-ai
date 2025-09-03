@@ -8,7 +8,7 @@ def home():
     return render_template('index.html')
 
 @app.route("/emotionDetector")
-def emotionDetector():
+def emotion_detector():
     text_to_analyze = request.args.get('textToAnalyze')
     result = emotion_detector(text_to_analyze)
 
@@ -18,7 +18,6 @@ def emotionDetector():
         f"and 'sadness': {result['sadness']}. The dominant emotion is {result['dominant_emotion']}. "
     )
     return formatted_result
-
 
 if __name__ == "__main__":
     ''' This functions executes the flask app and deploys it on localhost:5000
