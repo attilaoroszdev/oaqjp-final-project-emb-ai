@@ -12,6 +12,9 @@ def emotion_detector():
     text_to_analyze = request.args.get('textToAnalyze')
     result = emotion_detector(text_to_analyze)
 
+    if result['dominant_emotion'] is None:
+        return "Invalid input! Please try again."
+
     formatted_result = (
         f"For the given statement, the system response is 'anger': {result['anger']}, "
         f"'disgust': {result['disgust']}, 'fear': {result['fear']}, 'joy': {result['joy']} "
@@ -20,6 +23,4 @@ def emotion_detector():
     return formatted_result
 
 if __name__ == "__main__":
-    ''' This functions executes the flask app and deploys it on localhost:5000
-    '''
     app.run(host="0.0.0.0", port=5000)
